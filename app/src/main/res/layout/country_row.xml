@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="countryModel"
+            type="com.oktydeniz.kotlincountries.model.CountriesModel" />
+
+        <variable
+            name="listener"
+            type="com.oktydeniz.kotlincountries.adapter.CountryClickListener" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/feed_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{listener::onCountryClicked}"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/itemRowImage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:contentDescription="@string/app_name"
+            android:downloadUrl="@{countryModel.countryImage}"
+            android:padding="3dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/countryUUID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(countryModel.uuid)}"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/countryNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{countryModel.countryName}"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/countryRegionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{countryModel.countryRegion}"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>
